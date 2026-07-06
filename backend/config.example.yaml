@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+database:
+  # 本地开发前请复制为 config.yaml，并按本机环境填写 DSN。
+  # 也可以使用 DB_DSN 环境变量覆盖该值。
+  dsn: "mall_user:YOUR_LOCAL_PASSWORD@tcp(127.0.0.1:3306)/mall_admin?charset=utf8mb4&parseTime=True&loc=Local"
+
+jwt:
+  # 本地开发前请修改为自己的随机字符串，或使用 JWT_SECRET 环境变量覆盖。
+  secret: "change-me-in-local-config"
+  expire_seconds: 86400
