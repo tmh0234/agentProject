@@ -1,7 +1,0 @@
-server:
-  port: 8080
-database:
-  dsn: "mall_user:mall_password@tcp(127.0.0.1:3306)/mall_admin?charset=utf8mb4&parseTime=True&loc=Local"
-jwt:
-  secret: "mall-admin-dev-secret-change-me"
-  expire_seconds: 86400
