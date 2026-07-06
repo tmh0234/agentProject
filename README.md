@@ -28,33 +28,15 @@
 git checkout codex/init-admin-project
 ```
 
-### 2. 准备后端配置
+### 2. 启动数据库
 
-仓库提交示例配置 `backend/config.example.yaml`。本地开发时复制一份为 `backend/config.yaml`：
-
-```bash
-cp backend/config.example.yaml backend/config.yaml
-```
-
-`backend/config.yaml` 用于本机私有配置，不应该提交到仓库。
-
-后端支持环境变量覆盖配置文件：
-
-| 环境变量 | 说明 |
-| --- | --- |
-| `CONFIG_PATH` | 指定配置文件路径 |
-| `SERVER_PORT` | 后端监听端口 |
-| `DB_DSN` | 数据库连接串 |
-| `JWT_SECRET` | JWT 签名密钥 |
-| `JWT_EXPIRE_SECONDS` | JWT 过期秒数 |
-
-### 3. 启动数据库
+项目默认使用根目录 `docker-compose.yml` 中的 MySQL 服务，后端 `backend/config.yaml` 已和该服务保持一致。
 
 ```bash
 docker compose up -d mysql
 ```
 
-### 4. 启动后端
+### 3. 启动后端
 
 ```bash
 cd backend
@@ -68,7 +50,7 @@ go run ./cmd/server
 curl http://localhost:8080/api/v1/health
 ```
 
-### 5. 启动前端
+### 4. 启动前端
 
 ```bash
 cd frontend
