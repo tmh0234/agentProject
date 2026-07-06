@@ -18,9 +18,6 @@
       :collapse-transition="false"
       router
       unique-opened
-      background-color="#263445"
-      text-color="#c7d2df"
-      active-text-color="#ffffff"
     >
       <el-sub-menu v-for="group in menuGroups" :key="group.id" :index="group.path">
         <template #title>
@@ -84,8 +81,15 @@ function resolveIcon(name: string): Component {
   height: 100vh;
   flex: 0 0 auto;
   overflow: hidden;
-  background: #263445;
-  transition: width 0.2s ease;
+  border-right: 1px solid rgb(255 255 255 / 14%);
+  background:
+    linear-gradient(180deg, rgb(68 72 80 / 82%), rgb(45 49 56 / 88%)),
+    #343840;
+  box-shadow:
+    1px 0 0 rgb(29 29 31 / 10%),
+    18px 0 44px rgb(31 35 43 / 7%);
+  transition: width 0.22s ease;
+  backdrop-filter: blur(22px);
 }
 
 .sidebar-container.collapsed {
@@ -93,27 +97,38 @@ function resolveIcon(name: string): Component {
 }
 
 .sidebar-logo {
+  position: relative;
   display: flex;
   height: 52px;
   align-items: center;
   gap: 8px;
   padding: 0 8px;
-  border-bottom: 1px solid rgb(255 255 255 / 8%);
-  color: #ffffff;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  color: rgb(255 255 255 / 94%);
 }
 
 .logo-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
   flex: 0 0 28px;
+  place-items: center;
   justify-content: center;
-  font-size: 21px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 13%);
+  color: #f7f8fa;
+  font-size: 17px;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 16%) inset;
 }
 
 .logo-text {
   max-width: 78px;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
+  letter-spacing: 0;
   opacity: 1;
   transition:
     opacity 0.2s ease,
@@ -131,34 +146,140 @@ function resolveIcon(name: string): Component {
   height: 24px;
   flex: 0 0 24px;
   place-items: center;
-  border: 0;
+  border: 1px solid rgb(255 255 255 / 12%);
   border-radius: 6px;
   background: rgb(255 255 255 / 10%);
-  color: #dce7f3;
+  color: rgb(255 255 255 / 78%);
   cursor: pointer;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.collapse-button:hover {
+  background: rgb(255 255 255 / 17%);
+  color: #ffffff;
 }
 
 .collapsed .collapse-button {
-  margin-left: -4px;
+  position: absolute;
+  right: 3px;
+  bottom: 6px;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
 }
 
 .sidebar-menu {
   width: 100%;
   border-right: 0;
+  padding: 8px 6px;
+  background: transparent;
 }
 
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title) {
-  height: 44px;
-  padding-left: 14px !important;
+  position: relative;
+  height: 38px;
+  margin: 2px 0;
+  padding-left: 9px !important;
+  border-radius: 7px;
+  color: rgb(255 255 255 / 74%);
+  line-height: 38px;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+:deep(.el-sub-menu .el-menu-item) {
+  min-width: 0;
+  padding-left: 28px !important;
+  font-size: 13px;
+}
+
+:deep(.el-menu-item .el-icon),
+:deep(.el-sub-menu__title .el-icon) {
+  width: 18px;
+  margin-right: 8px;
+  color: rgb(255 255 255 / 58%);
+  font-size: 16px;
+}
+
+:deep(.el-sub-menu__title span),
+:deep(.el-menu-item .el-menu-tooltip__trigger span),
+:deep(.el-menu-item span) {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :deep(.el-menu-item:hover),
 :deep(.el-sub-menu__title:hover) {
-  background-color: #1f2d3d !important;
+  background: rgb(255 255 255 / 11%) !important;
+  color: #ffffff;
 }
 
 :deep(.el-menu-item.is-active) {
-  background-color: #409eff !important;
+  background: rgb(255 255 255 / 20%) !important;
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 16%) inset,
+    0 8px 22px rgb(0 0 0 / 13%);
+}
+
+:deep(.el-menu-item.is-active::before) {
+  position: absolute;
+  left: 5px;
+  width: 3px;
+  height: 16px;
+  border-radius: 3px;
+  background: #7cc8ff;
+  content: "";
+}
+
+:deep(.el-menu-item.is-active .el-icon),
+:deep(.el-menu-item:hover .el-icon),
+:deep(.el-sub-menu__title:hover .el-icon) {
+  color: #ffffff;
+}
+
+:deep(.el-sub-menu .el-menu) {
+  background: transparent;
+}
+
+:deep(.el-sub-menu__icon-arrow) {
+  right: 9px;
+  color: rgb(255 255 255 / 48%);
+}
+
+.collapsed .sidebar-logo {
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.collapsed .logo-icon {
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
+}
+
+.collapsed .sidebar-menu {
+  padding-inline: 5px;
+}
+
+.collapsed :deep(.el-menu-item),
+.collapsed :deep(.el-sub-menu__title) {
+  justify-content: center;
+  padding-left: 0 !important;
+}
+
+.collapsed :deep(.el-menu-item .el-icon),
+.collapsed :deep(.el-sub-menu__title .el-icon) {
+  margin-right: 0;
+}
+
+.collapsed :deep(.el-menu-item.is-active::before) {
+  left: 3px;
 }
 </style>

@@ -53,17 +53,74 @@ function handleCommand(command: string | number | object): void {
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;
-  border-bottom: 1px solid #dfe6ef;
-  background: #ffffff;
+  border-bottom: 1px solid var(--app-border);
+  background: rgb(255 255 255 / 72%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 84%) inset;
+  backdrop-filter: blur(20px);
+}
+
+:deep(.el-breadcrumb) {
+  font-size: 13px;
+}
+
+:deep(.el-breadcrumb__inner) {
+  color: var(--app-text-subtle);
+  font-weight: 500;
+}
+
+:deep(.el-breadcrumb__item:last-child .el-breadcrumb__inner) {
+  color: #3d424a;
+  font-weight: 650;
+}
+
+:deep(.el-breadcrumb__separator) {
+  color: #c4c8cf;
+  font-weight: 400;
 }
 
 .user-entry {
   display: inline-flex;
+  height: 34px;
   align-items: center;
   gap: 8px;
-  border: 0;
-  background: transparent;
-  color: #202833;
+  padding: 2px 8px 2px 3px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 72%);
+  color: var(--app-text);
   cursor: pointer;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 90%) inset,
+    0 8px 22px rgb(31 35 43 / 5%);
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.user-entry:hover {
+  border-color: rgb(29 29 31 / 18%);
+  background: rgb(255 255 255 / 92%);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 95%) inset,
+    0 10px 24px rgb(31 35 43 / 8%);
+}
+
+.user-entry span {
+  max-width: 120px;
+  overflow: hidden;
+  color: #343941;
+  font-size: 13px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-entry :deep(.el-avatar) {
+  background: linear-gradient(180deg, #f2f4f7, #d9dee7);
+  color: #4a5059;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 92%) inset;
 }
 </style>

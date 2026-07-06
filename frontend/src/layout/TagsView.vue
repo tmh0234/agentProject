@@ -57,46 +57,82 @@ function handleCommand(command: string | number | object): void {
 <style scoped>
 .tags-view {
   display: flex;
-  height: 38px;
+  height: 42px;
   flex: 0 0 auto;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   overflow-x: auto;
-  padding: 0 10px;
-  border-bottom: 1px solid #dfe6ef;
-  background: #ffffff;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--app-border);
+  background: rgb(248 249 251 / 68%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 86%) inset;
+  backdrop-filter: blur(18px);
+  scrollbar-width: thin;
 }
 
 .tag-button,
 .more-button {
   display: inline-flex;
-  height: 26px;
+  height: 28px;
   align-items: center;
   gap: 6px;
-  border: 1px solid #dfe6ef;
-  border-radius: 6px;
-  background: #ffffff;
-  color: #526173;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--app-text-muted);
   cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .tag-button {
-  padding: 0 8px;
+  padding: 0 9px;
+  font-size: 13px;
+  font-weight: 600;
   white-space: nowrap;
 }
 
+.tag-button:hover,
+.more-button:hover {
+  border-color: var(--app-border);
+  background: rgb(255 255 255 / 64%);
+  color: #343941;
+}
+
 .tag-button.active {
-  border-color: #409eff;
-  background: #ecf5ff;
-  color: #1677c8;
+  border-color: rgb(0 122 255 / 28%);
+  background: rgb(255 255 255 / 86%);
+  color: #0066d6;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 92%) inset,
+    0 8px 20px rgb(0 122 255 / 10%);
 }
 
 .close-icon {
-  font-size: 12px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: #8d949f;
+  font-size: 11px;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.tag-button.active .close-icon {
+  color: #5f9ddd;
+}
+
+.close-icon:hover {
+  background: rgb(29 29 31 / 8%);
+  color: #343941;
 }
 
 .more-button {
-  width: 28px;
+  width: 30px;
   justify-content: center;
 }
 </style>

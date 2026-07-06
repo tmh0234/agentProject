@@ -23,7 +23,8 @@ import TagsView from "./TagsView.vue";
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #f5f7fb;
+  background:
+    linear-gradient(180deg, #fbfcfd 0%, #f4f5f7 44%, #eef1f5 100%);
 }
 
 .main-area {
@@ -37,5 +38,9 @@ import TagsView from "./TagsView.vue";
   min-height: 0;
   flex: 1;
   overflow: auto;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 42%), transparent 22%),
+    linear-gradient(180deg, rgb(255 255 255 / 64%), transparent 190px),
+    var(--app-bg);
 }
 </style>

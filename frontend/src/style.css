@@ -3,15 +3,44 @@
 @tailwind utilities;
 
 :root {
-  color: #202833;
-  background: #f5f7fb;
+  color: #1d1d1f;
+  background: #f4f5f7;
   font-family:
-    "Noto Sans SC Variable",
-    "Microsoft YaHei",
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
     "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "Noto Sans SC",
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --app-bg: #f4f5f7;
+  --app-bg-soft: #eef1f5;
+  --app-text: #1d1d1f;
+  --app-text-muted: #6e7480;
+  --app-text-subtle: #9399a5;
+  --app-border: rgb(29 29 31 / 10%);
+  --app-border-strong: rgb(29 29 31 / 15%);
+  --app-panel: rgb(255 255 255 / 78%);
+  --app-panel-solid: #ffffff;
+  --app-shadow: 0 14px 38px rgb(31 35 43 / 9%);
+  --app-shadow-soft: 0 8px 24px rgb(31 35 43 / 6%);
+  --app-blue: #007aff;
+  --app-green: #34c759;
+  --app-orange: #ff9f0a;
+  --app-red: #ff3b30;
+  --app-graphite: #2f333a;
+  --el-color-primary: #007aff;
+  --el-color-primary-light-3: #52a8ff;
+  --el-color-primary-light-5: #8fc7ff;
+  --el-color-primary-light-7: #c8e4ff;
+  --el-color-primary-light-9: #eef7ff;
+  --el-color-primary-dark-2: #0066d6;
+  --el-border-radius-base: 7px;
 }
 
 html,
@@ -24,16 +53,25 @@ body,
 
 body {
   min-width: 1180px;
+  color: var(--app-text);
+  background:
+    linear-gradient(180deg, #fafbfc 0%, var(--app-bg) 38%, #eef1f5 100%);
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .page-shell {
-  padding: 16px;
+  min-height: 100%;
+  padding: 18px;
 }
 
 .toolbar {
@@ -41,21 +79,129 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 66%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 82%) inset;
+  backdrop-filter: blur(18px);
 }
 
 .filter-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .panel {
-  border: 1px solid #dfe6ef;
+  overflow: hidden;
+  border: 1px solid var(--app-border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--app-panel);
+  box-shadow:
+    var(--app-shadow-soft),
+    0 1px 0 rgb(255 255 255 / 90%) inset;
+  backdrop-filter: blur(18px);
 }
 
 .el-dialog {
+  border-radius: 8px;
+}
+
+.el-button {
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+.el-button--primary {
+  box-shadow: 0 8px 18px rgb(0 122 255 / 18%);
+}
+
+.el-input__wrapper,
+.el-select__wrapper,
+.el-textarea__inner,
+.el-input-number .el-input__wrapper {
+  border-radius: 7px;
+  background: rgb(255 255 255 / 82%);
+  box-shadow:
+    0 0 0 1px var(--app-border) inset,
+    0 1px 0 rgb(255 255 255 / 88%) inset;
+}
+
+.el-input__wrapper:hover,
+.el-select__wrapper:hover,
+.el-textarea__inner:hover {
+  box-shadow:
+    0 0 0 1px var(--app-border-strong) inset,
+    0 1px 0 rgb(255 255 255 / 88%) inset;
+}
+
+.el-input__wrapper.is-focus,
+.el-select__wrapper.is-focused,
+.el-textarea__inner:focus {
+  box-shadow:
+    0 0 0 1px var(--app-blue) inset,
+    0 0 0 3px rgb(0 122 255 / 13%);
+}
+
+.el-table.panel {
+  --el-table-border-color: rgb(29 29 31 / 8%);
+  --el-table-header-bg-color: rgb(248 249 251 / 78%);
+  --el-table-row-hover-bg-color: rgb(0 122 255 / 5%);
+  color: var(--app-text);
+}
+
+.el-table.panel .el-table__header th {
+  height: 44px;
+  color: #616771;
+  font-weight: 700;
+  background: rgb(248 249 251 / 82%);
+}
+
+.el-table.panel .el-table__row td {
+  height: 50px;
+}
+
+.el-table.panel::before,
+.el-table.panel .el-table__inner-wrapper::before {
+  display: none;
+}
+
+.el-tag {
+  border-radius: 7px;
+  font-weight: 600;
+}
+
+.el-pagination {
+  --el-pagination-border-radius: 7px;
+  color: var(--app-text-muted);
+}
+
+.el-dialog {
+  overflow: hidden;
+  border: 1px solid var(--app-border);
+  background: rgb(255 255 255 / 86%);
+  box-shadow: 0 26px 80px rgb(31 35 43 / 18%);
+  backdrop-filter: blur(24px);
+}
+
+.el-dialog__header {
+  padding: 18px 20px 12px;
+  border-bottom: 1px solid rgb(29 29 31 / 7%);
+}
+
+.el-dialog__body {
+  padding: 18px 20px;
+}
+
+.el-dialog__footer {
+  padding: 12px 20px 18px;
+  border-top: 1px solid rgb(29 29 31 / 7%);
+}
+
+.el-dropdown-menu {
   border-radius: 8px;
 }
