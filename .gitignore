@@ -1,1 +1,9 @@
 .DS_Store
+.superpowers/
+node_modules/
+dist/
+.tmp/
+*.tsbuildinfo
+.env
+*.local
+backend/config.yaml
